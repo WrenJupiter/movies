@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies!</title>
+</head>
+<body>
+    
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+    $('body').append('<form>');
+    $('form').append('<input type='text' id='title' name='title' minlength ='2'/>');
+    $('form').append('<input type='text' id='rating' name='rating' minlength ='0' maxlength = '10'/>');
+    $('body').append('<button id="submit">Submit</button>') 
+    
+    $('#submit').on('click', function(title,rating){
+        $('body').append('<div>')
+        let title = $(this).title
+        let rating = $(this).rating
+        $('(this).div').append(title,rating,'<button id='rem'>remove</button>')
+    })
+    $('#rem').on('click', function(){
+        $(this.div).remove;
+    })
+    
+</script>
+</html>
