@@ -4,26 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movies!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
+    <h1 class="container heading bg-success text-center">Movies!</h1>
+<div class="container text-center ">
+<div class="row">
     
+        <div class="col-4">
+        <form>
+            <input type="text"  id='title' name='title' placeholder="Enter Title" minlength ='2'/>   
+        </div>
+        <div class="col-4">
+            <input type='text' id='rating' name='rating' placeholder="Enter Rating (0-10)" minlength ='0' maxlength = '10'/>
+        </div>
+        <div class="col-4">
+            <button id='ad' class="btn btn-primary">Add To List</button>
+        </form>
+        </div>   
+</div>  
+</div>
+
+        
+
+
+    <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      Sort
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">A - Z</a>
+      <a class="dropdown-item" href="#">Z - A</a>
+      <a class="dropdown-item" href="#">Low to high</a>
+      <a class="dropdown-item" href="#">High to low</a>
+    </div>
+  </div>
+  <div class="card-holder">
+    <div class="card w-100">
+        <div class="card-body">
+            
+        </div>
+    </div>
+</div>
+  <!-- <div class="container text-center ">
+    <div class="row">
+        
+            <div id='title' class="col-4">
+    
+                  
+            </div>
+            <div id='rate' class="col-4">
+            
+            </div>
+            <div id='btn' class="col-4">
+                
+            </div>   
+    </div>  
+    </div> -->
+    <!-- <table>
+            <thead>
+              <tr>
+                <th scope="col"id="title"> <select id='name' <option value='az'>A-Z</option> <option value='za'>Z-A</option></th>
+                <th scope="col"><button id="sTitle">Sort by title</button></th>
+                <th scope="col" id="rating"><select id='rate' <option value='0-10'>0-10</option> <option value='10-0'>10-0</option></th>
+                <th scope="col"><button id="sRate">Sort by rating</button></th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            </tbody>
+    </table> -->
+    <ul>
+
+    </ul>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script>
-    $('body').append('<form>');
-    $('form').append('<input type='text' id='title' name='title' minlength ='2'/>');
-    $('form').append('<input type='text' id='rating' name='rating' minlength ='0' maxlength = '10'/>');
-    $('body').append('<button id="submit">Submit</button>') 
-    
-    $('#submit').on('click', function(title,rating){
-        $('body').append('<div>')
-        let title = $(this).title
-        let rating = $(this).rating
-        $('(this).div').append(title,rating,'<button id='rem'>remove</button>')
+    // let titles = $(#title).val();
+    // let rates = $(#rating).val();
+    let movies = [];
+    let stars = [];
+    $(document).ready(function () {
+       $('#ad').on('click', function () {
+            $('.card-holder').append(
+                '<div class="card w-100"><div class="card-body"></div></div>');
+            $('.card-body').append(<h5 class="card-title"></h5>)
+            $('.card-title').html($('#title').val());
+            $('.card-body').append(<p class="card-text"></p>);
+            $('.card-text').text($('#rating').val());
+            $(movies).push($('#title').val());
+            $(stars).push($('#rating').val());
+        })
+    });
+
+    $('#sTitle').on('click', function(){
+
     })
-    $('#rem').on('click', function(){
-        $(this.div).remove;
-    })
     
+
+    
+    // $('#submit').on('click', function() {
+        
+    //     $('(this).li').append({titles, rates},'$(<button id='rem'></button>)');
+    //     $('<ul>').append('<li>')
+    //     movies.push({titles, rates},)
+    // })
+    // $('#rem').on('click', function(){
+    //     $(this.li).remove();
+    // })
+    
+
 </script>
 </html>
