@@ -99,7 +99,7 @@
     $(document).ready(function () {
        $('#ad').on('submit', function (evt) {
         evt.preventDefault();
-        $('.card-holder').append('<div class="card w-100"><div class="card-body"></div></div>');
+        $('.card-holder').append('<div class="card w-100" +id ><div class="card-body"></div></div>');
         $('.card-body').append('<h5 class="card-title"></h5>');
         $('.card-title').html($('#title').val());
         $('.card-body').append('<p class="card-text"></p>');
