@@ -10,10 +10,10 @@
 <body>
     <h1 class="container heading bg-success text-center">Movies!</h1>
 <div class="container text-center ">
-<div class="row">
-    
+<div class>
+    <form class ='row'>
         <div class="col-4">
-        <form>
+        
             <input type="text"  id='title' name='title' placeholder="Enter Title" minlength ='2'/>   
         </div>
         <div class="col-4">
@@ -21,8 +21,9 @@
         </div>
         <div class="col-4">
             <button type='submit' id='ad' class="btn btn-primary">Add To List</button>
-        </form>
+        
         </div>   
+    </form>
 </div>  
 </div>
 
@@ -97,7 +98,7 @@
     let movies = [];
     let id = 0;
     $(document).ready(function () {
-       $('#ad').on('submit', function (evt) {
+       $('#ad').on('click', function (evt) {
         evt.preventDefault();
         $('.card-holder').append('<div class="card w-100" +id ><div class="card-body"></div></div>');
         $('.card-body').append('<h5 class="card-title"></h5>');
@@ -110,7 +111,6 @@
              'rate' : $('#rating').val(),
              'id' : id
             });
-         id++;
         })
     });
     //  $('.movieDel').on('click', function (){
