@@ -20,7 +20,7 @@
             <input type='text' id='rating' name='rating' placeholder="Enter Rating (0-10)" minlength ='0' maxlength = '10'/>
         </div>
         <div class="col-4">
-            <button id='ad' class="btn btn-primary">Add To List</button>
+            <button type='submit' id='ad' class="btn btn-primary">Add To List</button>
         </form>
         </div>   
 </div>  
@@ -32,13 +32,12 @@
     <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
       aria-haspopup="true" aria-expanded="false">
-      Sort
-    </button>
+      Sort</button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">A - Z</a>
-      <a class="dropdown-item" href="#">Z - A</a>
-      <a class="dropdown-item" href="#">Low to high</a>
-      <a class="dropdown-item" href="#">High to low</a>
+      <a class="dropdown-item id='az'" href="#">A - Z</a>
+      <a class="dropdown-item id='za'" href="#">Z - A</a>
+      <a class="dropdown-item id='lh'" href="#">Low to high</a>
+      <a class="dropdown-item id='hl'" href="#">High to low</a>
     </div>
   </div>
   <div class="card-holder">
@@ -93,24 +92,40 @@
 <script>
     // let titles = $(#title).val();
     // let rates = $(#rating).val();
+    let titles = [];
+    let rates = [];
     let movies = [];
-    let stars = [];
+    let id = 0;
     $(document).ready(function () {
-       $('#ad').on('click', function () {
-            $('.card-holder').append(
-                '<div class="card w-100"><div class="card-body"></div></div>');
-            $('.card-body').append(<h5 class="card-title"></h5>)
-            $('.card-title').html($('#title').val());
-            $('.card-body').append(<p class="card-text"></p>);
-            $('.card-text').text($('#rating').val());
-            $(movies).push($('#title').val());
-            $(stars).push($('#rating').val());
+       $('#ad').on('submit', function (evt) {
+        evt.preventDefault();
+        $('.card-holder').append('<div class="card w-100"><div class="card-body"></div></div>');
+        $('.card-body').append('<h5 class="card-title"></h5>');
+        $('.card-title').html($('#title').val());
+        $('.card-body').append('<p class="card-text"></p>');
+        $('.card-text').html($('#rating').val());
+        $('.card-text').append('<button class="movieDel btn btn-danger">Remove</button>');
+        $(movies).push(
+            {'title' : $('#title').val(),
+             'rate' : $('#rating').val(),
+             'id' : id
+            });
+         id++;
         })
     });
+    //  $('.movieDel').on('click', function (){
 
-    $('#sTitle').on('click', function(){
+    //  })
 
-    })
+    //  $('#az').on('click', function(){
+    //     $(movies).sort()
+    //  })
+
+
+// console.log(movies)
+//     $('#sTitle').on('click', function(){
+
+//     })
     
 
     
