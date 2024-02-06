@@ -1,144 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movies!</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
-<body>
-    <h1 class="container heading bg-success text-center">Movies!</h1>
-<div class="container text-center ">
-<div class>
-    <form class ='row'>
-        <div class="col-4">
-        
-            <input type="text"  id='title' name='title' placeholder="Enter Title" minlength ='2'/>   
-        </div>
-        <div class="col-4">
-            <input type='text' id='rating' name='rating' placeholder="Enter Rating (0-10)" minlength ='0' maxlength = '10'/>
-        </div>
-        <div class="col-4">
-            <button type='submit' id='ad' class="btn btn-primary">Add To List</button>
-        
-        </div>   
-    </form>
-</div>  
-</div>
+    <link rel="stylesheet" href="bootstrap.css" />
+  </head>
+  <body>
+    <h1 class="container heading bg-secondary text-light text-center">
+      Movies!
+    </h1>
 
-        
-
-
-    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
-      Sort</button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item id='az'" href="#">A - Z</a>
-      <a class="dropdown-item id='za'" href="#">Z - A</a>
-      <a class="dropdown-item id='lh'" href="#">Low to high</a>
-      <a class="dropdown-item id='hl'" href="#">High to low</a>
-    </div>
-  </div>
-  <div class="card-holder">
-    <div class="card w-100">
-        <div class="card-body">
-            
-        </div>
-    </div>
-</div>
-  <!-- <div class="container text-center ">
-    <div class="row">
-        
-            <div id='title' class="col-4">
-    
-                  
+    <div class="container text-center">
+      <div class="">
+        <div class="form-group rounded">
+          <hr />
+          <form id="form" class="row">
+            <div class="input-group col-6">
+              <label for="title" class="px-3 py-2">Enter a Title:</label>
+              <input
+                class="text-center form-control"
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Deadpool"
+                minlength="2"
+              />
             </div>
-            <div id='rate' class="col-4">
-            
+            <div class="input-group col-6">
+              <label for="rating" class="px-3 py-1">Enter a Rating:</label>
+              <input
+                class="text-center form-control"
+                type="text"
+                id="rating"
+                name="rating"
+                placeholder="10"
+                minlength="0"
+                maxlength="10"
+              />
             </div>
-            <div id='btn' class="col-4">
-                
-            </div>   
-    </div>  
-    </div> -->
-    <!-- <table>
-            <thead>
-              <tr>
-                <th scope="col"id="title"> <select id='name' <option value='az'>A-Z</option> <option value='za'>Z-A</option></th>
-                <th scope="col"><button id="sTitle">Sort by title</button></th>
-                <th scope="col" id="rating"><select id='rate' <option value='0-10'>0-10</option> <option value='10-0'>10-0</option></th>
-                <th scope="col"><button id="sRate">Sort by rating</button></th>
-              </tr>
-            </thead>
-            <tbody>
-              
-            </tbody>
-    </table> -->
-    <ul>
+            <div class="col-12 pt-4">
+              <button
+                type="sumbit"
+                id="ad"
+                class="btn-block shadow btn btn-success"
+              >
+                Add To List
+              </button>
+            </div>
+          </form>
+          <hr />
+        </div>
+      </div>
+    </div>
 
-    </ul>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
-</body>
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script>
-    // let titles = $(#title).val();
-    // let rates = $(#rating).val();
-    let titles = [];
-    let rates = [];
-    let movies = [];
+    <div class="form-group" class="dropdown">
+      <button
+        class="btn shadow btn-primary dropdown-toggle ml-3"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Sort
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item id='az'" href="#">A - Z</a>
+        <a class="dropdown-item id='za'" href="#">Z - A</a>
+        <a class="dropdown-item id='lh'" href="#">Low to high</a>
+        <a class="dropdown-item id='hl'" href="#">High to low</a>
+      </div>
+    </div>
+    <div>
+      <ul id="movieList"></ul>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script>
     let id = 0;
-    $(document).ready(function () {
-       $('#ad').on('click', function (evt) {
-        evt.preventDefault();
-        $('.card-holder').append('<div class="card w-100" +id ><div class="card-body"></div></div>');
-        $('.card-body').append('<h5 class="card-title"></h5>');
-        $('.card-title').html($('#title').val());
-        $('.card-body').append('<p class="card-text"></p>');
-        $('.card-text').html($('#rating').val());
-        $('.card-text').append('<button class="movieDel btn btn-danger">Remove</button>');
-        $(movies).push(
-            {'title' : $('#title').val(),
-             'rate' : $('#rating').val(),
-             'id' : id
-            });
-        })
-    });
-    //  $('.movieDel').on('click', function (){
+    let movies = [];
+    let ids = [id];
 
-    //  })
+    $(document).ready(function () {
+      $("#ad").on("click", function (evt) {
+        evt.preventDefault();
+        let title = $("#title").val();
+        let rating = $("#rating").val();
+        let rem = $(
+          "<button class='rem shadow btn btn-danger btn-sm rounded-circle mx-2'>X</button>"
+        );
+        let curMovie = { title, rating, id };
+        movies.push(curMovie);
+
+        let li = $("<li>");
+        li.id = id;
+        li.html(curMovie["title"] + ": " + curMovie["rating"]);
+        li.append(rem);
+        //object wont stringify
+        $("#movieList").append(li);
+        console.log(curMovie);
+
+        rem.on("click", function () {
+          li.remove();
+        });
+        id++;
+      });
+    });
+
+    $("#az").on("click", function () {
+      $("#movieList").innerHtml("");
+      for (let movie of curMovies) {
+        const sorted = $(movies).sort();
+        $("movieList").append(sorted);
+      }
+
+      // for (let movie of sortedMovies) {
+      //   const curMovie = sort(curMovies(movie));
+      //   $("#movieList").append(curMovie);
+      // }
+    });
+
+    // function sort(){
+    //     if()
+    // }
+    // $("#az").on("click", function () {
+    //   const AZ = $("#movieList").sort(curMovie["title"]);
+    //   li.push(AZ);
+    // });
 
     //  $('#az').on('click', function(){
     //     $(movies).sort()
     //  })
 
+    // console.log(movies)
+    //     $('#sTitle').on('click', function(){
 
-// console.log(movies)
-//     $('#sTitle').on('click', function(){
-
-//     })
-    
-
-    
-    // $('#submit').on('click', function() {
-        
-    //     $('(this).li').append({titles, rates},'$(<button id='rem'></button>)');
-    //     $('<ul>').append('<li>')
-    //     movies.push({titles, rates},)
-    // })
-    // $('#rem').on('click', function(){
-    //     $(this.li).remove();
-    // })
-    
-
-</script>
+    //     })
+  </script>
 </html>
