@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movies!</title>
-    <link rel="stylesheet" href="bootstrap.css" />
+    <link href="bootstrap.css" rel="stylesheet" />
+    <title>Movies</title>
   </head>
   <body>
     <h1 class="container heading bg-secondary text-light text-center">
@@ -12,7 +12,7 @@
     </h1>
 
     <div class="container text-center">
-      <div class="">
+      <div>
         <div class="form-group rounded">
           <hr />
           <form id="form" class="row">
@@ -25,23 +25,27 @@
                 name="title"
                 placeholder="Deadpool"
                 minlength="2"
+                maxlength="5"
+                pattern=".{2,5}"
+                required
               />
             </div>
             <div class="input-group col-6">
               <label for="rating" class="px-3 py-1">Enter a Rating:</label>
               <input
                 class="text-center form-control"
-                type="text"
+                type="number"
                 id="rating"
                 name="rating"
                 placeholder="10"
-                minlength="0"
-                maxlength="10"
+                required
+                min="0"
+                max="10"
               />
             </div>
             <div class="col-12 pt-4">
               <button
-                type="sumbit"
+                type="submit"
                 id="ad"
                 class="btn-block shadow btn btn-success"
               >
@@ -66,15 +70,16 @@
         Sort
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item id='az'" href="#">A - Z</a>
-        <a class="dropdown-item id='za'" href="#">Z - A</a>
-        <a class="dropdown-item id='lh'" href="#">Low to high</a>
-        <a class="dropdown-item id='hl'" href="#">High to low</a>
+        <a class="dropdown-item" id="az" href="#">A - Z</a>
+        <a class="dropdown-item" id="za" href="#">Z - A</a>
+        <a class="dropdown-item" id="lh" href="#">Low to high</a>
+        <a class="dropdown-item" id="hl" href="#">High to low</a>
       </div>
     </div>
     <div>
       <ul id="movieList"></ul>
     </div>
+
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -90,67 +95,73 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
-  </body>
-  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-  <script>
-    let id = 0;
-    let movies = [];
-    let ids = [id];
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+      let id = 0;
+      let movies = [];
+      let ids = [id];
 
-    $(document).ready(function () {
-      $("#ad").on("click", function (evt) {
-        evt.preventDefault();
-        let title = $("#title").val();
-        let rating = $("#rating").val();
-        let rem = $(
-          "<button class='rem shadow btn btn-danger btn-sm rounded-circle mx-2'>X</button>"
-        );
-        let curMovie = { title, rating, id };
-        movies.push(curMovie);
+      $(document).ready(function () {
+        $("#ad").on("click", function (evt) {
+          evt.preventDefault();
+          let title = $("#title").val();
+          let rating = $("#rating").val();
+          let rem = $(
+            "<button class='rem shadow btn btn-danger btn-sm rounded-circle mx-2'>X</button>"
+          );
+          let curMovie = { title, rating, id };
+          movies.push(curMovie);
 
-        let li = $("<li>");
-        li.id = id;
-        li.html(curMovie["title"] + ": " + curMovie["rating"]);
-        li.append(rem);
-        //object wont stringify
-        $("#movieList").append(li);
-        console.log(curMovie);
+          let li = $("<li>");
+          li.id = id;
+          li.html(curMovie["title"] + ": " + curMovie["rating"]);
+          li.append(rem);
+          $("#movieList").append(li);
 
-        rem.on("click", function () {
-          li.remove();
+          rem.on("click", function () {
+            li.remove();
+          });
+          id++;
         });
-        id++;
+
+        $("#az").on("click", function () {
+          movies.sort((a, b) => a.title.localeCompare(b.title));
+          displayMovies();
+        });
+        //localeCompare is awesome
+        $("#za").on("click", function () {
+          movies.sort((a, b) => b.title.localeCompare(a.title));
+          displayMovies();
+        });
+
+        $("#lh").on("click", function () {
+          movies.sort((a, b) => a.rating - b.rating);
+          displayMovies();
+        });
+
+        $("#hl").on("click", function () {
+          movies.sort((a, b) => b.rating - a.rating);
+          displayMovies();
+        });
+
+        function displayMovies() {
+          $("#movieList").empty();
+          for (let movie of movies) {
+            let li = $("<li>");
+            li.id = movie.id;
+            li.html(movie.title + ": " + movie.rating);
+            let rem = $(
+              "<button class='rem shadow btn btn-danger btn-sm rounded-circle mx-2'>X</button>"
+            );
+            li.append(rem);
+            $("#movieList").append(li);
+
+            rem.on("click", function () {
+              li.remove();
+            });
+          }
+        }
       });
-    });
-
-    $("#az").on("click", function () {
-      $("#movieList").innerHtml("");
-      for (let movie of curMovies) {
-        const sorted = $(movies).sort();
-        $("movieList").append(sorted);
-      }
-
-      // for (let movie of sortedMovies) {
-      //   const curMovie = sort(curMovies(movie));
-      //   $("#movieList").append(curMovie);
-      // }
-    });
-
-    // function sort(){
-    //     if()
-    // }
-    // $("#az").on("click", function () {
-    //   const AZ = $("#movieList").sort(curMovie["title"]);
-    //   li.push(AZ);
-    // });
-
-    //  $('#az').on('click', function(){
-    //     $(movies).sort()
-    //  })
-
-    // console.log(movies)
-    //     $('#sTitle').on('click', function(){
-
-    //     })
-  </script>
+    </script>
+  </body>
 </html>
