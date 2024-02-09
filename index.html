@@ -102,7 +102,7 @@
       let ids = [id];
 
       $(document).ready(function () {
-        $("#ad").on("click", function (evt) {
+        $("#form").on("submit", function (evt) {
           evt.preventDefault();
           let title = $("#title").val();
           let rating = $("#rating").val();
